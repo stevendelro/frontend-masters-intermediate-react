@@ -15,14 +15,14 @@ In order to have the most up to date skills, you've got to learn things as soon 
 
 ## Notes:
 
-###Pure React
+### Pure React
 
   * Many other tutorials provide a GitHub repository to clone in which all the "magic" or modern tools that make React easier to work with, come preconfigured and ready to go. This is not one of those tutorials.
   * Holt takes the approach of showing you how React works without any tools or dependencies. Once we understand certain concepts, he'll begin to introduce the tools *as solutions* to the inconveniences that we'll face when coding in vanilla React.
   * This will help remove the sense of "magic" that many people have when diving into a preconfigured course project folder, and I believe that it also provides a huge level of context and appreciation for the most common tools that many newbie React developers, like myself, may take for granted.
   * Towards the end of the Pure React section, Holt gives his opinion on how React's self-contained, component-based approach is so much more maintainable in a production environment than an Angular-based approach.
 
-###React Tooling
+### React Tooling
 
     Currently in progress..
 
