@@ -17,7 +17,7 @@ In order to have the most up to date skills, you've got to learn things as soon 
 
 ### Pure React
 
-  * Many other tutorials provide a GitHub repository to clone in which all the "magic" or modern tools that make React easier to work with, come preconfigured and ready to go. This is not one of those tutorials.
+  * Many other tutorials provide a GitHub repository to clone in which all the "magic" or modern tools that make React easier to work with come preconfigured. This is not one of those tutorials.
   * Holt takes the approach of showing you how React works without any tools or dependencies. Once we understand certain concepts, he'll begin to introduce the tools *as solutions* to the inconveniences that we'll face when coding in vanilla React.
   * This will help remove the sense of "magic" that many people have when diving into a preconfigured course project folder, and I believe that it also provides a huge level of context and appreciation for the most common tools that many newbie React developers, like myself, may take for granted.
   * Towards the end of the Pure React section, Holt gives his opinion on how React's self-contained, component-based approach is so much more maintainable in a production environment than an Angular-based approach.
@@ -32,6 +32,13 @@ In order to have the most up to date skills, you've got to learn things as soon 
   * I didn't know that passing in a blank `--` flag when running a npm script will allow you to add more parameters to that particular npm script. Cool stuff.
   
 ### Parcel
+
+  * Holt prefers Webpack for projects that he builds and maintains, but understands how complicated Webpack configurations can become, so for teaching purposes he introduces **Parcel** as an alternative because its pretty much plug-and-play.
+  * We installed Parcel and wrote a npm script for it and had it running in the background. Meanwhile, we wrote a simple import statement for react at the top of our App.js file and Parcel automatically installed React as a dependency to our package.json.
+  * Props to Devin Govett and his work with Parcel. Seeing it work on my machine is really incredible. With a single npm script, everything that needed to be configured through webpack is essentially taken care of. 
+  * Holt shows us some vscode magic where you could highlight a section of code, click the little lightbulb icon that vscode overlays on top of your highlight, then you can choose `Move to a new file` to automatically create a file with the same name as your variable and import it into the file that you just had it in. Wow. So many cool little tips and tricks in this course.
+  
+### JSX
 
     Currently in progress..
 
