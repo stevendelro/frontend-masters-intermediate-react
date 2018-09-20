@@ -9,7 +9,7 @@ This course was written for and recorded by [Frontend Masters][fem]. The code he
 
 ## Why am I taking this course?
 
-I was following along Stephen Grider's courses for the past two weeks and as great as they are, once I saw that Brian Holt launched the fourth iteration of his React course on FrontEndMasters, I knew that I should switch things up and spend my time with a React industry leader. 
+I was following along Stephen Grider's courses for the past two weeks and as great as they are, once I saw that Brian Holt launched the fourth iteration of his React course on FrontEndMasters, I knew that I should switch things up for a bit and spend some time with one of my all-time favorite online instructors. 
 
 In order to have the most up to date skills, you've got to learn things as soon as the best teachers teach them.
 
