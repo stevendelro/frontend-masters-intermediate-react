@@ -6,6 +6,7 @@
   "scripts": {
     "format": "prettier --write \"src/**/*.{js,jsx,css,json}\"",
     "format:check": "prettier --list-different \"src/**/*.{js,jsx,css,json}\"",
+    "lint": "eslint \"**/*.{js,jsx}\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +20,9 @@
   },
   "homepage": "https://github.com/stevendelro/frontend-masters-react-v4#readme",
   "devDependencies": {
+    "eslint": "^5.6.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-prettier": "^2.6.2",
     "prettier": "^1.14.3"
   }
 }
