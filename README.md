@@ -34,9 +34,9 @@ In order to have the most up to date skills, you've got to learn things as soon 
 ### Parcel
 
   * Holt prefers Webpack for projects that he builds and maintains, but understands how complicated Webpack configurations can become, so for teaching purposes he introduces **Parcel** as an alternative because its pretty much plug-and-play.
-  * We installed Parcel and wrote a npm script for it and had it running in the background. Meanwhile, we wrote a simple import statement for react at the top of our App.js file and Parcel automatically installed React as a dependency to our package.json.
-  * Props to Devin Govett and his work with Parcel. Seeing it work on my machine is really incredible. With a single npm script, everything that needed to be configured through webpack is essentially taken care of. 
-  * Holt shows us some vscode magic where you could highlight a section of code, click the little lightbulb icon that vscode overlays on top of your highlight, then you can choose `Move to a new file` to automatically create a file with the same name as your variable and import it into the file that you just had it in. Wow. So many cool little tips and tricks in this course.
+  * We installed Parcel and wrote a npm script for it and had it running in the background. Meanwhile, we wrote a simple React import statement at the top of our App.js file and Parcel automatically installed it as a dependency to our package.json, then subsequently rebuilt and reloaded our app.
+  * Props to Devin Govett and his work with Parcel. Seeing it work in realtime on my machine is incredible. With a single npm script, everything that needed to be configured through webpack is essentially taken care of. 
+  * Holt then shows us some vscode magic where you could highlight a section of code, click the little lightbulb icon that vscode overlays on top of your highlight, then you can choose `Move to a new file` to automatically create a file with the same name as your variable and import it into the file that you just had it in. Wow. So many cool little tips and tricks in this course.
   
 ### JSX
 
