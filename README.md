@@ -41,6 +41,14 @@ In order to have the most up to date skills, you've got to learn things as soon 
   
 ### JSX
 
+  * Up until this point, we've been using the createElement method from vanilla React to give some context with what's going on behind the scenes when we transition towards using JSX. It's not magic, JSX simply gets translated into the verbose React.createElement blocks that we've been using.
+  * Holt dives into a great story about how prior to JSX, the React team was using a PHP variant called "XHP" for all their templating and JSX was actually created to please the PHP developers, everyone found JSX pleasurable enough to work with and it took off from there.
+  * In order to get eslint working properly, we begin to install a bunch of plugins, one of which: `eslint-plugin-jsx-a11y` where Holt elaborates that the eleven between the the "a" and "y" is an eleven because there's 11 letters between "a" and "y" in the word: accessibility. Interesting.
+  * Asides like this are awesome. The small stories and anecdotes that Holt sprinkles into these lectures establishes a sense of unspoken trust between the audience and him. They seem to come off as nonchalant references, which they are, but they also subconsciously hint at Holt's experience as a seasoned developer.
+  * Holt explains his recent switch from using the strict AirBnB linting rules, to the less strict "recommended" rules because—more often than not—he finds himself correcting perfectly valid code just to satisfy the linting rules, which at this point for him isn't worth the concern. 
+  
+### Rendering Data
+
     Currently in progress..
 
 ## Final thoughts: 
