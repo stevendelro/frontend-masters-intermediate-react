@@ -21,9 +21,13 @@
   },
   "homepage": "https://github.com/stevendelro/frontend-masters-react-v4#readme",
   "devDependencies": {
+    "babel-eslint": "^9.0.0",
     "eslint": "^5.6.0",
     "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-react": "^7.11.1",
     "parcel-bundler": "^1.9.7",
     "prettier": "^1.14.3"
   },
