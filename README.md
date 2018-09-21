@@ -67,6 +67,23 @@ In order to have the most up to date skills, you've got to learn things as soon 
   
 ### Async UI
 
+  * This section started off somewhat slow. We begin fleshing out the Details.js page with a `componentDidMount` call that sets the appropriate data to appropriate places within out component-level state object, then we tossed up some really basic JSX to display the information to the user.
+  * Holt explains that the `constructor(props){super(props)}` pattern is currently being phased-out and soon it'll be common place to have the component-level state object simply declared as a top-level class property.
+  * Up until now, we've been pretty spoiled with Parcel automatically handling our babel config, so in order to implement this pattern, Holt has us install a slew of babel packages and then takes through configuring babel manually. 
+  * I've actually implemented this within my Movie Finder app and prefer it. It looks clean and many other React tutorials have began teaching students React without the constructor/super calls.
+  * Within the .bablerc file we set env to target the last two versions of browsers, as opposed to targeting a specific browser, so as time goes on babel would be transpiling less and less of our code. Then we added `transform-class-properties` as a plugin, headed over to our .eslintrc.json file to drop in `babel-eslint` as our parser.
+  * We move on to create a Carousel component, which would display the pictures of dogs in a more UX friendly way. Holt has us use a new lifecycle method: `static getDerivedStateFromProps({ media })` which was completely new to me. 
+  * The `static` keyword means that this particular function isn't concerned with mutating any state, but only with taking in some props and returning some state. 
+  
+  Here's a quote from MDN elaborating on the `static` keyword:
+  
+        "The static keyword defines a static method for a class. Static methods aren't called on instances of the class. Instead, they're called on the class itself. These are often utility functions, such as functions to create or clone objects."
+        
+  * I've got to be honest and say that I don't completely understand the utility of `static` or the `getDerivedStateFromProps` method, so I'll have do more experimenting on my own to really get a feel for it.
+  * I really enjoyed learning about adding a simple `+` sign to the front of a string to coerce it into being a number. These little tricks with type management have been really insightful for me. I'm looking forward to getting into and implementing TypeScript with my future projects. I've got Kyle Simpson's courses on my course Hitlist for sure. 
+  
+### Forms
+
     Currently in progress..
 
 ## Final thoughts: 
