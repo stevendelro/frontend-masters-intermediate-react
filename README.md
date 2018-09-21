@@ -41,15 +41,23 @@ In order to have the most up to date skills, you've got to learn things as soon 
   
 ### JSX
 
-  * Up until this point, we've been using the createElement method from vanilla React to give some context with what's going on behind the scenes when we transition towards using JSX. It's not magic, JSX simply gets translated into the verbose React.createElement blocks that we've been using.
+  * Up until this point, we've been using the `.createElement` method from vanilla React to give some context with what's going on behind the scenes when we transition towards using JSX. It's not magic, JSX simply gets translated into the verbose React.createElement blocks that we've been using.
   * Holt dives into a great story about how prior to JSX, the React team was using a PHP variant called "XHP" for all their templating, and JSX was actually created to please the PHP developers, everyone found JSX pleasurable enough to work with and it took off from there.
   * In order to get eslint working properly, we begin to install a bunch of plugins, one of which was `eslint-plugin-jsx-a11y` where Holt explains that the eleven between the "a" and "y" is there because the word accessibility has eleven letters between "a" and "y". *Interesting.*
   * Asides like this are awesome. The small stories and anecdotes that Holt sprinkles into these lectures establishes a sense of unspoken trust between the audience and him. They seem to come off as nonchalant references, which they are, but they also subconsciously hint at Holt's experience as a seasoned developer.
   * This most likely isn't intentional, but I thought it was worth noting because these *subtle behavioral cues* can have a huge effect on the student-to-teacher "buy-in factor" which I've arbitrarily coined just now. I'm an avid online course taker and being able to trust in my instructor's experience has been *critical* for me to take his/her material seriously, which subconsciously	defines how much of my attention they will get from me and how much drive I'll ultimately have to complete the course.   
-  * Looking for these subtle cues = key life skill, folks.
+  * Looking for these subtle cues is a key life skill, folks.
   * Holt explains his recent switch from using the strict AirBnB linting rules, to the less strict "recommended" rules because—more often than not—he finds himself correcting perfectly valid code just to satisfy the linting rules, which isn't worth the concern for him at this point.
   
 ### Rendering Data
+
+  * We kick off this section with a quick exposure to environment variables. We create a .env file in our root directory in order to house our API keys and secrets. We would declare this .env file in our .gitignore to prevent the key/secrets from being exposed on GitHub.
+  * This would have saved me *a ton of time* in a past project where I had my API key blatantly exposed as a declared variable in my backend  
+  * Unlike most past tutorials that I've taken, Holt immediately has us creating and using a component lifecycle method, in this case it's a `componentDidMount`, which is arguably the most useful of the bunch. It's interesting to see him teach this so early on. Most other instructors don't bother to expose their students to lifecycle methods until much later in their courses.
+  * The PetFinder API sends back XML, so Holt has us install and use his `petfinder-client` which he made specifically for this course, that will translate the XML into workable JSON.
+  * The downside to this is that we need to have a bunch of if/else statements in our component to ensure sure that the data that we're going to manipulate is of the correct type.
+
+### Routing
 
     Currently in progress..
 
