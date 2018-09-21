@@ -59,6 +59,14 @@ In order to have the most up to date skills, you've got to learn things as soon 
 
 ### Routing
 
+  * In the three previous iterations of this lecture, Holt taught us how to use React-Router, which is still the defacto community standard, so it was a surprise to see that he's opting to teach us something I've never heard of: **Reach Router.**  
+  * We go about extracting the PetFinder logic into it's own Results file, then we created a simple Details file to prepare for some logic to display all the individual details for a specific animal.  
+  * Then, Holt shows us another pretty cool vscode trick: if you begin adding a component tag to display within another component, the autocomplete feature will allow you to hit `return` and vscode *will automatically import* that component to the top of your page *with* the correct relative path. Sweet.
+  * Not too long after that he dives into the React Dev tools in the browser where he shows us some useful features.
+  * After this initial exposure to Reach Router, I plan on incorporating it into my next personal project. It looks interesting and I'd like to dive deeper into understanding it's capabilities.
+  
+### Async UI
+
     Currently in progress..
 
 ## Final thoughts: 
