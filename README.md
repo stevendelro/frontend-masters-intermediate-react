@@ -52,7 +52,7 @@ In order to have the most up to date skills, you've got to learn things as soon 
 ### Rendering Data
 
   * We kick off this section with a quick exposure to environment variables. We create a .env file in our root directory in order to house our API keys and secrets. We would declare this .env file in our .gitignore to prevent the key/secrets from being exposed on GitHub.
-  * This would have saved me *a ton of time* in a past project where I had my API key blatantly exposed as a declared variable in my backend  
+  * This would have saved me *a ton of time* in a past project where I had my API key blatantly exposed as a declared variable in my backend.  
   * Unlike most past tutorials that I've taken, Holt immediately has us creating and using a component lifecycle method, in this case it's a `componentDidMount`, which is arguably the most useful of the bunch. It's interesting to see him teach this so early on. Most other instructors don't bother to expose their students to lifecycle methods until much later in their courses.
   * The PetFinder API sends back XML, so Holt has us install and use his `petfinder-client` which he made specifically for this course, that will translate the XML into workable JSON.
   * The downside to this is that we need to have a bunch of if/else statements in our component to ensure sure that the data that we're going to manipulate is of the correct type.
