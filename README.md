@@ -84,6 +84,16 @@ In order to have the most up to date skills, you've got to learn things as soon 
   
 ### Forms
 
+  * Hey guys, it's been about a week since my last push. I took a break to get some personal matters in order, but all is well now. Lets finish this course up!
+  * Holt takes us through the process of making a super basic form. He intentionally creates an input with its value hardcoded within our initial state declaration. He does this in order to segue into a lecture on how two-way binding in React is *much more* difficult to implement than in Angular or Ember. 
+  * I have absolutely zero Angular or Ember experience, so this is pretty normal to me. Holt goes on to explain why he enjoys this so much and how making two way binding difficult helps developers be more mindful of what is actually going on. He's even pounding on the podium and go so far as calling it a great feature. I dig it.
+  * Notable Quote: *"Always, *always* err on the side of maintainability and readability. You should have performance problems first, before you solve your performance problems."*
+  * All this type checking is really adding a ton of friction when it comes to dealing with choosing a breed from the Petfinder breed list. I understand that it's necessary, but it can get cumbersome to type all this repetitive code while keeping your mind actively thinking about the main objective of the current section.
+  * I believe in the next course: Intermediate React, Holt will go over Typescript and I've got a hunch that writing in TypeScript will help absolve these issues. I can't wait to finish this course up and get started on that. 
+  * To be completely honest, the only reason why I'm taking this Intro course is to have enough context with the project in order to take the intermediate course, which I plan on using that intermediate knowledge to optimize my portfolio.
+  
+### Context
+
     Currently in progress..
 
 ## Final thoughts: 
