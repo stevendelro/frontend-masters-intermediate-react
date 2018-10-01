@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import { ANIMALS } from 'petfinder-client';
+import pf, { ANIMALS } from 'petfinder-client';
+
+const petfinder = pf({
+  key: process.env.API_KEY,
+  secret: process.env.API_SECRET
+});
 
 class SearchParams extends Component {
   state = {
     location: 'Portland, OR',
     animal: '',
-    breed: ''
+    breed: '',
+    breeds: []
   };
   handleLocationChange = event => {
     this.setState({
@@ -13,10 +19,38 @@ class SearchParams extends Component {
     });
   };
   handleAnimalChange = event => {
+    this.setState(
+      {
+        animal: event.target.value,
+        breed: ''
+      },
+      this.getBreeds
+    );
+  };
+  handleBreedChange = event => {
     this.setState({
-      animal: event.target.value
+      breed: event.target.value
     });
   };
+  getBreeds() {
+    if (this.state.animal) {
+      petfinder.breed.list({ animal: this.state.animal }).then(data => {
+        if (
+          data.petfinder &&
+          data.petfinder.breeds &&
+          Array.isArray(data.petfinder.breeds.breed)
+        ) {
+          this.setState({
+            breeds: data.petfinder.breeds.breed
+          });
+        } else {
+          this.setState({ breeds: [] });
+        }
+      });
+    } else {
+      this.setState({ breeds: [] });
+    }
+  }
   render() {
     return (
       <div className="search-params">
@@ -45,6 +79,24 @@ class SearchParams extends Component {
             ))}
           </select>
         </label>
+        <label htmlFor="breed">
+          Breed
+          <select
+            id="breed"
+            value={this.state.breed}
+            onChange={this.handleBreedChange}
+            onBlur={this.handleBreedChange}
+            disabled={this.state.breeds.length === 0}
+          >
+            <option />
+            {this.state.breeds.map(breed => (
+              <option key={breed} value={breed}>
+                {breed}
+              </option>
+            ))}
+          </select>
+        </label>
+        <button>Submit</button>
       </div>
     );
   }
