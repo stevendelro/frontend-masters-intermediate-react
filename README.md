@@ -108,7 +108,8 @@ In order to have the most up to date skills, you've got to learn things as soon 
 ##### Part 2
 
   * We get into the SearchBox component and replace all the `this` and `this.state` references with `context`. Afterwards, we jump back into SearchParams in order to set it up to render SearchBox. 
-  * Now, we have the component SearchParams displaying Searchbox *without needing to pass anything through to it*. This is the magic of Context. It will allow you to place this SearchBox component anywhere in your app without needing to wire up a direct line through the component tree. 
+  * Now, we have the component SearchParams displaying Searchbox *without needing to pass anything through to it*. 
+  * **This is the magic of Context:** It will allow you to place this SearchBox component anywhere in your app *without* needing to wire up a direct line through the component tree. 
   * The utility of this is pretty apparent, but Holt walks us through how it can create some problems when it comes to troubleshooting possible bugs. Because of the Producer and Consumer, it becomes difficult to see exactly what is happening to our data during that implicit leap.
   * Holt takes us to the Results page, imports SearchBox and simply drops it into the markup and it works flawlessly. Pretty cool. Many new libraries are taking advantage of this in big ways. Reach Router—the router that we're currently using—is using Context *everywhere*.
   * I'm really enjoying this and hope to implement it in one of my projects soon. I find that although I understand how it works conceptually, its not until I actually implement it that I get a real feel for how it fits into my development process.
