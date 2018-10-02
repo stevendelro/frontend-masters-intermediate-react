@@ -13,7 +13,7 @@ const petfinder = pf({
 });
 
 class App extends Component {
-  constructor() {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -65,13 +65,19 @@ class App extends Component {
       this.setState({ breeds: [] });
     }
   }
+
   render() {
     return (
       <div>
         <header>
           <Link to="/">Adopt Me!</Link>
+          <Link to="/search-params">
+            <span aria-label="search" role="img">
+              🔍
+            </span>
+          </Link>
         </header>
-        <Provider value={this.state} >
+        <Provider value={this.state}>
           <Router>
             <Results path="/" />
             <Details path="/details/:id" />
