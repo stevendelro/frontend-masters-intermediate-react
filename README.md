@@ -94,7 +94,20 @@ In order to have the most up to date skills, you've got to learn things as soon 
   
 ### Context
 
-    Currently in progress..
+##### Part 1
+
+  * At this point in the tutorial, if we understand how data flows from parent component to child component via props and component state, then we have a pretty good grasp on React in general. From here on out, we will be diving into the more advanced parts of the framework.
+  * Holt kicks off this section with his opinion on using the spread operator to automatically inject props into a component—and how doing so is a bad practice. 
+  * My takeaway from this is: "when in doubt, *always take the explicit route*." It'll improve the experience of reading and understanding your code by making the flow of data easy to follow. Hearing his explanation makes me want to sift over everything in my upcoming portfolio to make everything is easy to follow. 
+  * Context is universal data for your application. Holt reminds us that this can easily be abused because it bypasses the uniform "parent-to-child" data flow that's at the core of React, but for good reason. 
+  * Basically, it was made to resolve the "data-tunneling" problem that occurs when passing data through multiple nested components. Because of how similar it is to Redux, we will be able to use it its place for certain situations.
+  * Wow, after implementing the Providers and Consumers from the Context API, I'm really impressed. This is so cool. I could see how it could be seen as magic, but to me it feels like the next level of utilizing the same tools that React has been having us use. 
+  * At the most basic level, a component is simply a function that returns some markup. Within Context, that function will still return markup, but we pass in an object with all our goodies from far away for us to use as we please within that markup.
+  * Lmao at the obligatory programmer swig of Mountain Dew during the beginning of the Context Q&A video.
+  
+##### Part 2
+ 
+      Currently in progress..
 
 ## Final thoughts: 
 
