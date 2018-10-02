@@ -106,8 +106,22 @@ In order to have the most up to date skills, you've got to learn things as soon 
   * Lmao at the obligatory programmer swig of Mountain Dew during the beginning of the Context Q&A video.
   
 ##### Part 2
+
+  * We get into the SearchBox component and replace all the `this` and `this.state` references with `context`. Afterwards, we jump back into SearchParams in order to set it up to render SearchBox. 
+  * Now, we have the component SearchParams displaying Searchbox *without needing to pass anything through to it*. This is the magic of Context. It will allow you to place this SearchBox component anywhere in your app without needing to wire up a direct line through the component tree. 
+  * The utility of this is pretty apparent, but Holt walks us through how it can create some problems when it comes to troubleshooting possible bugs. Because of the Producer and Consumer, it becomes difficult to see exactly what is happening to our data during that implicit leap.
+  * Holt takes us to the Results page, imports SearchBox and simply drops it into the markup and it works flawlessly. Pretty cool. Many new libraries are taking advantage of this in big ways. Reach Router—the router that we're currently using—is using Context *everywhere*.
+  * I'm really enjoying this and hope to implement it in one of my projects soon. I find that although I understand how it works conceptually, its not until I actually implement it that I get a real feel for how it fits into my development process.
+  * It would've been nice for Holt to have a quick little aside on what would (and wouldn't) constitute proper use of the Context API. The example with a search box seems pretty straight forward, but it would've been nice to shed more light on some other examples to get a better idea of best practices. I'll have to dive into the official docs for more info for sure.
+  * Nice, Holt sprinkles in a couple unfamiliar words for me: **reticent**, which means "not revealing one's thoughts or feelings readily" and **admonish**, which means "to warn or reprimand someone firmly."
+  * Anyway, we go about wiring up our Results page by giving it Context and modifying the componentDidMount call into a `search()` method. This new search method will use the Context data as it's search parameters. 
+  * We create a new `componentDidMount` method and call `search()` within that. Since we extracted out the logic from the lifecycle method into its own function, we're now able to wire up that logic to fire off with new parameters when the user fills out and submits the form. Clever.
+  * Ahh, it looks like the Holt answers the question on when to use the Context API during the last video of this section. Basically, use it as a last resort when passing props through your components just wont suffice for your particular usage of that component. 
+  * If something has to live in the parent component and must be used in two places, then suffer and use props. But, if you're using that data in many more than two places, the Context API would be a viable consideration. Again, Holt stresses that these guidelines for usage are his opinions and that he follows these guidelines because it aids readability and maintainability down the road.
  
-      Currently in progress..
+### Portals
+
+      Currently in progress.. 
 
 ## Final thoughts: 
 
