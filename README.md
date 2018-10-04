@@ -122,7 +122,7 @@ In order to have the most up to date skills, you've got to learn things as soon 
  
 ### Portals
 
-  * This section begins with an opinion that I share with Holt: **f*ck modals.** He didn't quite say it as succinctly as I just did, but you could tell that he's reticent in his yearning to admonish those who encourage the use of this needy UI pattern. 
+  * This section begins with an opinion that I share with Holt: **f*ck modals.** He didn't quite say it as succinctly as I just did, but you could tell that he's somewhat reticent to admonish those who encourage the flagrant use of this needy UI pattern. 
   * I get it, there's a time and a place for *yadda yadda yadda..* Unless it's used to confirm an irreversible/important event, I believe that modals are nothing more than decorated pop-ups. 
   * **Intrinsic value is more compelling than attention grabbing gimmicks/marketing**, imo.
   * Interesting, we create a new `div` in our index.html file for the modal to display above our root `div`. This allows us to still catch events that happen within Details.js and inside our modal even though the modal is in a separate React DOM element from our root `div`.
@@ -134,8 +134,28 @@ In order to have the most up to date skills, you've got to learn things as soon 
 
 ### Conclusion
 
-      Currently in progress.. 
+##### Refs
+
+ * Holt shows us the utility of a simple React ref by referencing a h1 element and `console.log`-ing it to our browser console. He does this to show us that refs return whatever specific element is being `ref`-ed.
+ * You wouldn't need to use `refs` unless you were using some kind of third party library like D3 or jQuery because they reference DOM elements, which explains why I've personally never needed to use them.
+
+##### Lifecycle Methods
+
+ * We then go into a quick overview of the `shouldComponentUpdate` lifecycle method and how it could be a simple pitfall for some new developers. Typically, `shouldComponentUpdate` would be used to optimize finicky, deeply nested components.
+ * Holt brings up the official docs to talk about a couple other lifecycle methods in detail.
+ * React 16 has implemented more async functionality which means that the lifecycle methods `componentWillUpdate()` and `componentWillReceiveProps()` are now considered unsafe to use. 
+ * Basically: 
+UNSAFE with React16|Replace with
+------------- | ------------- 
+`componentWillReceiveProps()`|`static getDerivedStateFromProps()` 
+`componentWillUpdate()`| `getSnapshotBeforeUpdate()`
+
+##### Performance
+
+ * Holt briefly shows us how to record "performance" with the browser devtools.
+ * This really piques my interest as the main reason why I'm taking this course is to take the intermediate course that follows in order to improve the performance of my portfolio and some of the projects that I plan on showcasing on there.
+ * We conclude the course with a quick overview and that's it!
 
 ## Final thoughts: 
 
-   *To be determined*
+      Currently in progress..
