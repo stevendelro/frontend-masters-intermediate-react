@@ -158,4 +158,16 @@ UNSAFE with React16|Replace with
 
 ## Final thoughts: 
 
-      Currently in progress..
+It took me about two weeks to complete this course while casually working through it. 
+
+I would've completed it quicker if this were my first pass through this material, but most of it was review and I found myself constantly losing interest and attention. So, I had to break it up into easily digestible sections for my own sake.   
+
+At this point, I'm pretty much warmed up in terms of getting back into the "developer's state of mind". I plan on finishing the accompanying Intermediate React course and then diving straight into personal projects right after. Once I get my portfolio up to my standards, I'm hitting up the San Diego job market like no other. 
+
+Somewhere deep down inside, there's a part of me that still wants to get certified for having foundational I.T. knowledge in too. I don't see many developers creating apps with security as a priority, which is I think is *extremely* reckless and irresponsible. For example, I have no idea what kind of code is laying around within all these npm packages that I'm installing, so how could I be sure that I'm not introducing anything malicious into my projects or more importantly, into a company project?
+
+Once that portfolio is complete and I'm at a place where I feel comfortable to begin applying to jobs, I'm going to divert all my attention to security and begin developing and implementing my *security first* paradigm of software development.
+
+Stay tuned for more verbose `README.md`'s because that just how I do, yo.
+
+Anyway, thanks for reading! 
