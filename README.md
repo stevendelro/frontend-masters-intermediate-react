@@ -122,6 +122,18 @@ In order to have the most up to date skills, you've got to learn things as soon 
  
 ### Portals
 
+  * This section begins with an opinion that I share with Holt: **f*ck modals.** He didn't quite say it as succinctly as I just did, but you could tell that he's reticent in his yearning to admonish those who encourage the use of this needy UI pattern. 
+  * I get it, there's a time and a place for *yadda yadda yadda..* Unless it's used to confirm an irreversible/important event, I believe that modals are nothing more than decorated pop-ups. 
+  * Intrinsic value is more compelling than attention grabbing gimmicks/marketing, imo.
+  * Interesting, we create a new div in our index.html file for the modal to display above our root div. This allows us to still catch events that happen within Details.js and inside our modal even though the modal is in a separate React DOM element from our root div.
+  * I don't quite grasp the full utility of this pattern just yet, but Holt reassures us that this provides the space for developers to create some pretty flexible features.
+  * It would've been cool to have had an info link attached to this part of the video that would show us a barrage of examples of these *flexible features*. 
+  * As this short section comes to a close, I'm feeling somewhat left in the dust, having seen a magic trick performed and explained, but without enough time to fully comprehend what exactly just happened and the importance of what was just shared with me. 
+  * Regardless, my interest has piqued and I'm grateful for the exposure. I'll have to deep dive on Portals sometime down the road for myself.
+  
+
+### Conclusion
+
       Currently in progress.. 
 
 ## Final thoughts: 
