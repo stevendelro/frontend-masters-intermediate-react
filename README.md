@@ -165,7 +165,7 @@ I would've completed it quicker if this were my first pass through this material
 
 At this point, I'm pretty much warmed up in terms of getting back into the "developer's state of mind". I plan on finishing the accompanying Intermediate React course and then diving straight into personal projects right after. Once I get my portfolio up to my standards, I'm hitting up the San Diego job market like no other. 
 
-Somewhere deep down inside, there's a part of me that still wants to get certified for having foundational I.T. knowledge in too. I don't see many developers creating apps with security as a priority, which is I think is *extremely* reckless and irresponsible. For example, I have no idea what kind of code is laying around within all these npm packages that I'm installing, so how could I be sure that I'm not introducing anything malicious into my projects or more importantly, into a company project?
+Somewhere deep down inside, there's a part of me that still wants to get certified for having foundational web security knowledge. I don't see many developers creating apps with security as a priority, which is I think is *extremely* reckless and irresponsible. For example, I have no idea what kind of code is laying around within all these npm packages that I'm installing, so how could I be sure that I'm not introducing anything malicious into my projects or more importantly, into a company project?
 
 Once that portfolio is complete and I'm at a place where I feel comfortable to begin applying to jobs, I'm going to divert all my attention to security and begin developing and implementing my *security first* paradigm of software development.
 
