@@ -144,11 +144,12 @@ In order to have the most up to date skills, you've got to learn things as soon 
  * We then go into a quick overview of the `shouldComponentUpdate` lifecycle method and how it could be a simple pitfall for some new developers. Typically, `shouldComponentUpdate` would be used to optimize finicky, deeply nested components.
  * Holt brings up the official docs to talk about a couple other lifecycle methods in detail.
  * React 16 has implemented more async functionality which means that the lifecycle methods `componentWillUpdate()` and `componentWillReceiveProps()` are now considered unsafe to use. 
- * Basically: 
-UNSAFE with React16|Replace with
+ * Basically:
+
+Unsafe with React v16 | Replace With 
 ------------- | ------------- 
-`componentWillReceiveProps()`|`static getDerivedStateFromProps()` 
-`componentWillUpdate()`| `getSnapshotBeforeUpdate()`
+componentWillReceiveProps()  | static getDerivedStateFromProps()   
+componentWillUpdate()   | getSnapshotBeforeUpdate() 
 
 ##### Performance
 
