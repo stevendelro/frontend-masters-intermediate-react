@@ -21,14 +21,14 @@ Let's get started.
 
 ## Course Outline
 
- 1. Testing React
- 2. CSS in JS
- 3. Code Splitting
- 4. Redux
- 5. Server Side Rendering
- 6. Preact
- 7. Code Organization
- 8. TypeScript with React
+1. Testing React
+2. CSS in JS
+3. Code Splitting
+4. Redux
+5. Server Side Rendering
+6. Preact
+7. Code Organization
+8. TypeScript with React
 
 ## Notes
 
