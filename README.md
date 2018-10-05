@@ -45,12 +45,14 @@ Let's get started.
   
 ###### Make your tests fail
 
-  * Holt recommends that along with getting your tests to pass, you also want to be able to make them fail. This extra step of modifying your code to make your assertions fail *on purpose* will give you reassurance that the tests you are running are passing as you intended.
+  * Holt recommends that along with getting your tests to pass, you also want to be able to make them fail. 
+  * This extra step of modifying your code to make your assertions fail *on purpose* will give you reassurance that the tests you are running are passing as you intended.
   * Jest is intelligent enough to always run the last test to fail, first. This means that Jest will run your tests out of order in order to reach a "fail" as fast as possible. To have that capability availably—out of the box—is pretty impressive.
   
 ###### Istanbul & code coverage
 
-  * Jest also incorporates another library within it called "istanbul" which checks for test code coverage throughout your project. We set up a npm script with the `--coverage` flag and run it. Our console displays a nicely color formatted chart that shows how much of our project's code is covered by tests. This is pretty cool.
+  * Jest also incorporates another library within it called "istanbul" which checks for test code coverage throughout your project. We set up a npm script with the `--coverage` flag and run it. 
+  * Our console then displays a nicely color formatted chart that shows how much of our project's code is covered by tests. This is pretty cool.
   * Even cooler, when we run the coverage command, istanbul creates a **coverage** directory in your project. Within it, there's a directory named **lcov-report** and within that there's an **index.html** file. 
   * When you open that **index.html** file in your browser, it will take you to a generated report of the test code coverage for your project—complete with highlighted sections of your code to show you exactly what you need to write tests for.
   
