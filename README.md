@@ -19,9 +19,13 @@ Anyway, enough with the introduction.
 
 Let's get started.
 
-## Course Outline
+## Course Notes Outline
 
 1. Testing React
+  * Jest
+  * Make your tests fail
+  * Istanbul & code coverage
+  * Advice
 2. CSS in JS
 3. Code Splitting
 4. Redux
