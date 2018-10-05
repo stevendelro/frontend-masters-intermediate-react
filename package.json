@@ -4,10 +4,13 @@
   "description": "Built while following The Complete Intro to React v4, by Brian Holt",
   "main": "index.js",
   "scripts": {
+    "test": "jest --silent",
+    "test:update": "jest --silent -u",
+    "test:watch": "jest --silent --watch",
+    "test:coverage": "jest --silent --coverage",
     "format": "prettier --write \"src/**/*.{js,jsx,css,json}\"",
     "format:check": "prettier --list-different \"src/**/*.{js,jsx,css,json}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\"",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel src/index.html"
   },
   "repository": {
