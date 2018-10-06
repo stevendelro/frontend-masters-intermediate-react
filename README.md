@@ -27,6 +27,9 @@ Let's get started.
     * Istanbul & code coverage
     * Advice
 2. CSS in JS
+	* Emotion & React-Emotion
+    * Tagged Template Literals
+    * Is CSS in JS a good thing?
 3. Code Splitting
 4. Redux
 5. Server Side Rendering
@@ -68,7 +71,65 @@ Let's get started.
   
 ## CSS in JS
 
-     Currently in progress..
+  * I'm pretty excited for this section. The majority of my portfolio is written in Sass and I'm pretty curious on whether or not what I learn in this section would help me optimize my code.
+  * Holt briefly addresses the unresolved angst that the React community has with CSS in JS.  He then assures us that he will share is personal opinion on the matter after he brings us up to speed.
+  
+###### Emotion & React-Emotion
+
+  * First things first, we `npm install emotion react-emotion`. We then head over to App.js and extract out the Header logic into its own component file: NavBar.js.
+
+  * We import the `styled` function from react-emotion, passed the string `"header"` to it and used it to create an instance of a new variable named `Container`. 
+  
+Here's NavBar.js in its entirety as of right now:
+
+	import React from 'react';
+    import { Link } from '@reach/router';
+    import styled from 'react-emotion';
+    
+    const Container = styled("header")`
+      background-color: #333;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    `;
+    
+    const NavBar = () => (
+      <Container>
+        <Link to="/">Adopt Me!</Link>
+        <Link to="/search-params">
+        <span aria-label="search" role="img">
+            🔍
+        </span>
+        </Link>
+      </Container>
+    );
+
+    export default NavBar;
+
+###### Tagged Template Literals
+  
+  * That back-tick block that you see up there in `Container` is a [Tagged Template Literal](https://www.youtube.com/watch?v=kj8HU-_P2NU).
+  * This was my first exposure to it, so bear with me: from my understanding, when you call a function followed by a template literal, that function will be called with two arrays as arguments: 
+    1. One array would include all the strings within that template literal, with each array item being the string value of whatever is between expressions.
+    2. The second array would include all the expressions within that template literal, with each array item being the resulting value of each expression, separated by the strings.
+  * In the browser, this functions just like having normal CSS applied the traditional way.
+  * I'm assuming that the two arrays that result from this particular Tagged Template Literal are:
+    1. An array of keys: `['background-color', 'position', 'top', 'z-index']`
+    2. An array of values: `['#333', 'sticky', 0, 10]` 
+  * These two arrays are then manipulated by `react-emotion` to create the CSS we want to be applied to our Header. 
+  * Because we are using Tagged Template Literals, we now have the ability to inject javascript into our CSS via expression interpolation, aka: `${ }`. Whaat. This is nuts.
+  * I'm actually pretty excited now. The entire design structure of my portfolio will need to get reworked, which means I'll have a ton of real-world practice to apply what I've just learned.
+  
+###### Is CSS in JS a good thing?
+
+  * Having CSS in JS can make it relatively easy for us to have our CSS interact with our component state. 
+  * Holt shows us a hilarious example of this by making our spyglass emoji rotate faster and faster with every click from the user.
+  * It looks like his opinion of CSS in JS is extremely positive. I like it too. Having all a component's Javascript, CSS and JSX located within one file seems much more intuitive to me than having everything abstracted away, only to be completely assembled during the build phase.
+  * His opinion is roughly: having CSS in JS lets us see CSS in a different light, and innovations like this are really pushing the Javascript community forward. He then vouches for CSS modules as being a great middle-ground option between pure CSS and Emotion if you still aren't fully convinced.
+
+## Code splitting
+
+      Currently in progress..
   
 ## Final thoughts: 
 
