@@ -31,6 +31,10 @@ Let's get started.
     * Tagged Template Literals
     * Is CSS in JS a good thing?
 3. Code Splitting
+    * React-Loadable
+    * React-Loadable Tips
+    * React.Fragment
+    * Prefetching
 4. Redux
 5. Server Side Rendering
 6. Preact
@@ -114,8 +118,8 @@ Here's NavBar.js in its entirety as of right now:
     2. The second array would include all the expressions within that template literal, with each array item being the resulting value of each expression, separated by the strings.
   * In the browser, this functions just like having normal CSS applied the traditional way.
   * I'm assuming that the two arrays that result from this particular Tagged Template Literal are:
-    1. An array of keys: `['background-color', 'position', 'top', 'z-index']`
-    2. An array of values: `['#333', 'sticky', 0, 10]` 
+    1. An array of keys: `['background-color', 'position', 'top', 'z-index']`.
+    2. An array of values: `['#333', 'sticky', 0, 10]`.
   * These two arrays are then manipulated by `react-emotion` to create the CSS we want to be applied to our Header. 
   * Because we are using Tagged Template Literals, we now have the ability to inject javascript into our CSS via expression interpolation, aka: `${ }`. Whaat. This is nuts.
   * I'm actually pretty excited now. The entire design structure of my portfolio will need to get reworked, which means I'll have a ton of real-world practice to apply what I've just learned.
@@ -127,7 +131,58 @@ Here's NavBar.js in its entirety as of right now:
   * It looks like his opinion of CSS in JS is extremely positive. I like it too. Having all a component's Javascript, CSS and JSX located within one file seems much more intuitive to me than having everything abstracted away, only to be completely assembled during the build phase.
   * His opinion is roughly: having CSS in JS lets us see CSS in a different light, and innovations like this are really pushing the Javascript community forward. He then vouches for CSS modules as being a great middle-ground option between pure CSS and Emotion if you still aren't fully convinced.
 
-## Code splitting
+## Code Splitting
+
+  * The last section definitely left me with some cool ideas on how to revamp my portfolio, but code splitting just might be the single most effective thing for me to implement in order to ramp up my site's performance. 
+  * This is going to be my first deep dive into this topic, so I'm pretty stoked.
+  * Looks like Holt is going to start us off with `npm install react-loadable`.
+
+###### React-Loadable
+
+  * React-loadable is a functional component that accepts three things: 
+    1. The component we want to load. 
+    2. A component that it will display as our primary component loads.
+    3. A component to display in the event our app runs into any errors.
+  * We create an instance of `loadable` from react-loadable and pass in a configuration object where we set the first key, `loader`, to a lambda function that uses the  `import` keyword as a function: 
+
+The instance of `loadable`:
+
+      const LoadableDetails = Loadable({
+        loader: () => import('./Details'),
+        loading() {
+         return <h1>Loading Split Code..</h1>;
+        }
+      });
+ * Essentially, it's returning an import statement, but using `import` as a function. Interesting.  
+ * Holt says that Parcel is smart enough to see this, find Details.js and bring it out for us, then he quickly moves onto explaining the next line in the config. This makes me wonder: would using `import` as a function work without Parcel? I'll have to experiment with this later.
+ * Moving on, the second parameter is where we would typically return a loading spinner. Looks like we're going with a simple `h1` for now.
+ * Lastly, we replace our `Details` component JSX tag with `LoadableDetails`, restart our dev server, open up our devTools and click over to the Network tab.
+ * We reload our browser and checkout the network calls. When we click into a specific animal's link, we see that the details for that animal are loaded only when that animal is selected. Nice. 
+ 
+###### React-Loadable Tips
+
+ * In the following Q&A video, Holt actually confirms that using `import` as a function isn't related to React. Webpack and Parcel both give us the ability to do this for lazy-loading.
+ * We set up two more components with react-loader: Results.js and SearchParams.js. Holt shows us that using react-loader for sections of our app that are already small would actually slow down our UX. 
+ * **Code splitting introduces *more* network latency, so it's important for us to code split only when our bundle gets above ~50kB in size** (after minifying and g-zipping). This would ensure that we get some overall net gains in performance to make it worth introducing more complexity to our app.
+ * Holt mentions the utility of **Service Workers** and how we could use them to drop our initial page loading time by loading other bundles in the background, but he isn't going to cover that in this tutorial. Looks like I'll have to track that course down as as well. 
+ 
+###### React.Fragment 
+
+ * In older versions of React, we had to place all of our code within a top layer `div` in order for React to render our component to the browser. In React 16, we now have the ability to use `<React.Fragment>` as our top layer.
+ * It looks like it, but `<React.Fragment>` doesn't replace the top layer `div`. It just allows React to render whatever children are inside of it, together.
+ * In a future release of JSX, we'll be able to remove the `React.Fragment` keywords and simply use: `<>` as the opening parent tag and `</>` as the closing tag.
+ * Parcel doesn't support this just yet, so we're stuck with using `<React.Fragment>` for now.
+ 
+###### Prefetching
+
+ * Holt briefly references Addy Osmani's blog and discusses the utility of Prefetching.
+ * To prefetch, aka "hinting", add another script tag to your index.html file with the attributes: `rel="prefetch" src="./<whatever-the-bundle-path-is>"`. 
+ * This will check the user's browser and see if they're on a mobile device with a full battery, or if they're in a high speed network. If they fall into either category, it'll go ahead and prefetch all the bundles for them, thus improving the UX. If not, then it will ignore the prefetching and load normally. 
+ * This is somewhat "hit and miss" since some browsers on mobile devices will automatically ignore any prefetch calls.
+ * If you want more granular control and not leave things to chance, it might be a good move to look into utilizing a Service Worker.
+ * Holt references his v3 of this course on how to split your code manually if you are curious on how to do this without using something like `react-loadable`.
+ 
+## Redux
 
       Currently in progress..
   
