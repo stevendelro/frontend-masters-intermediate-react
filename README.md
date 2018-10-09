@@ -58,7 +58,7 @@ Let's get started.
 
   * Holt recommends that along with getting your tests to pass, you also want to be able to make them fail. 
   * This extra step of modifying your code to make your assertions fail *on purpose* will give you reassurance that the tests you are running are passing as you intended.
-  * Jest is intelligent enough to always run the last test to fail, first. This means that Jest will run your tests out of order in order to reach a "fail" as fast as possible. To have that capability availably—out of the box—is pretty impressive.
+  * Jest is intelligent enough to always run the last test to fail, first. This means that Jest will run your tests out of order in order to reach a "fail" as fast as possible. To have that capability available—out of the box—is pretty impressive.
   
 ###### Istanbul & code coverage
 
