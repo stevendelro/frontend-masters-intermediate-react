@@ -226,20 +226,21 @@ The instance of `loadable`:
 - We're basically creating separate files in this folder with each file exporting a single function that returns an object with an appropriate named `type` property, then passing our user input as the value for the `payload` property. I thought this was going to be something new, but it's just business as usual.
 - Holt uses the `function` keyword for this, like so:
     
-   export default function changeAnimal(animal) {
-  return {
-  type: "SET_ANIMAL",
-  payload: animal
-  };
-  }
+      export default function changeAnimal(animal) {
+        return {
+          type: "SET_ANIMAL",
+          payload: animal
+        };
+      }
+
 - But I prefer using fat arrow functions for a cleaner look, like so:
+
+      const changeAnimal = animal => ({
+        type: 'SET_ANIMAL',
+        payload: animal
+      });
     
-   const changeAnimal = animal => ({
-  type: 'SET_ANIMAL',
-  payload: animal
-  });
-    
-   export default changeAnimal;
+      export default changeAnimal;
 
 - We then quickly dive into how testable these action creators are, especially when utilizing the `.toEqualSnapShot()` function. This gives your future self, or any other future developers, notice that changing the "type" will cause problems.
 - Other tutorials make this point by setting all the types equal to constants of the same name, but I like this approach because it utilizes tests, which I believe to be more explicit in expressing what should and shouldn't happen.
