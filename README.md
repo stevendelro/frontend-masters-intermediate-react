@@ -36,6 +36,13 @@ Let's get started.
     * React.Fragment
     * Prefetching
 4. Redux
+    * The Store
+    * Reducers
+    * Actions & Action Creators
+    * Connecting Redux To A Component
+    * Thunks & Dispatch
+    * Connecting The Actions to Respond To User Input
+    * Wrap Up
 5. Server Side Rendering
 6. Preact
 7. Code Organization
@@ -184,8 +191,134 @@ The instance of `loadable`:
  
 ## Redux
 
+ * Holt begins this section with a disclaimer that React and Redux—although commonly referenced together—are *not* the same thing. 
+ * If you *don't* need to wrangle down and manage a ton of state, then **it's best to pass on including Redux in your project**. Why? Because Redux adds *a ton* of complexity to your code. It's best used for larger, more dynamic applications.
+ * Essentially, Redux is a central data store for your entire repo. If managed correctly, this makes your state extremely predictable and testable.
+ * It's so great for testing that Holt says, *"If you're not writing tests for Redux, you're not using it properly."* 
+ * First things first, we create the **Redux Store**.
+ 
+###### The Store
+
+ * The Redux store is the central location where all of our state will reside.
+ * Holt has us `npm i redux redux-thunk react-redux` and then we create a `store.js` file and begin setting our store up.
+ * In order to properly implement the use of the Redux devTools, we add a parameter to our `compose` function that checks to see if we have Redux DevTools installed. If so, we use it. If not, we return a harmless function to let the store know that it's all good and not to throw any errors. 
+ * We also apply `thunk` as middleware.
+ * In order to create a proper store, we need to pass in some reducers.
+ 
+###### Reducers
+
+ * Reducers are nothing more than pure functions that:
+   1. Accepts two things: the current App state, and objects that have unique "type" properties called "actions".
+   2. Then, after it processes an action, it'll will return a new version of App state.
+ * Holt has us create a reducer folder in our src directory and proceeds to elaborate on the `combineReducers` function. 
+ * To sum it up, he shows how `combineReducers()` works to stitch together segmented parts of our state object through separate reducers. Then we go into a quick explaination on what constitutes a "pure" function.
+ * I'm pretty familiar with Redux, so I found these explanations easy to digest. 
+ * Side note: these deep dives into the core tools of React really help to keep my mind engaged. Many other tutorials have a focus on how the core tools of React are used, whereas Holt brings us a bit deeper into *how* the core tools work when we use them. 
+ * It's like learning about the concept of leverage in order to better understand how a wrench works. Sure, the efficacy of a wrench remains the same whether or not you understand leverage, but taking the time to understand how and why these tools are effective will allow us to use our tools with **intention**—which is *far better* than simply using them as a means to an end.
+ * As we create more basic reducers to handle the search parameter UI, Holt is using *if/else* statements instead of switch statements. I'm assuming that this is because switch statements would be a bit overkill for what we're dealing with.
+ * With all our reducers set up, we need a way to get data to flow through them. This calls for actions and action creators.
+ 
+###### Actions & Action Creators
+ 
+ * Holt makes the point that actions and actionCreators are two different concepts, where actionCreators create our actions (duh), and these actions will pass through our reducers in order to give our app new versions of state to use.
+ * We make a new directory in our src folder called `actionCreators`. I find this interesting because I've named this folder simply `actions` in past projects.
+ * We're basically creating separate files in this folder with each file exporting a single function that returns an object with an appropriate named `type` property, then passing our user input as the value for the `payload` property. I thought this was going to be something new, but it's just business as usual.
+ * Holt uses the `function` keyword for this, like so:
+        
+        export default function changeAnimal(animal) {
+          return {
+            type: "SET_ANIMAL",
+            payload: animal
+          };
+        }
+        
+ * But I prefer using fat arrow functions for a cleaner look, like so:
+        
+        const changeAnimal = animal => ({
+          type: 'SET_ANIMAL',
+          payload: animal
+        });
+        
+        export default changeAnimal;
+
+ * We then quickly dive into how testable these action creators are, especially when utilizing the `.toEqualSnapShot()` function. This gives your future self, or any other future developers, notice that changing the "type" will cause problems. 
+ * Other tutorials make this point by setting all the types equal to constants of the same name, but I like this approach because it utilizes tests, which I believe to be more explicit in expressing what should and shouldn't happen.
+ 
+###### Connecting Redux A Component
+
+ * In seven-and-a-half minutes, Holt connects all of our Redux infrastructure to our app.
+ 
+   * First, we head over to App.js and `import { Provider as ReduxProvider } from redux`. 
+   * Then, we place this new `<ReduxProvider>` tag around our Context `<Provider>` tag down in the return statement below.
+   * And then, we `import store from './store';` and pass it in as an attribute like so: `<ReduxProvider store={store}>`
+ 
+ * This particular video (Connecting to React with react-redux) could've been explained a bit better. 
+ * Holt seems to wing it and jumps around the code while thinking out loud. He's trying to choose the best way to show us how to wire up the redux state to a particular component—and it got *pretty* confusing.
+ * At this point, all the children of `<ReduxProvider>` will have the ability to access the state within the store. In order to set this up, Holt arbitrarily chooses the `<Results>` page as our example.
+ * In an effort to make things less complicated, he makes the decision to wire it up with state from a single reducer: location.
+ * Very quickly, he discusses how the `connect` function works with `mapStateToProps`, then he walks us through the flow of data to show us that it is indeed connected.
+ * I don't think this would be the best video for a beginner to see in order to learn Redux. That being said, this isn't a Redux course. The walkthrough near the end of the video was solid enough for me to get my head around what he just did, so all good.
+ 
+###### Thunks, Dispatch & Refactoring Our App
+ 
+ * **Thunk** is a slang derivative of the word "think". In computer science, thunks are functions that are used to delay a calculation until a result is needed. 
+ * **Dispatch** is a function that is given to us from the Redux library. It's always called with an action object. All it does is send that action object to our reducers.
+ * Redux-thunk allows us to process asynchronous data when we receive it. This means that we could write code where we treat an AJAX call just like a Javascript promise.  
+ * When an AJAX call is made by the user and our app receives a response, redux-thunk allows us to use `dispatch()` to send an action object to all our reducers—with that response data (or part of that response data) as the payload, and whatever we want as the type.
+ * After Holt's discussion redux-thunk and dispatch, we refactor our App to remove all Context examples and helper functions as *all of this* has been extracted out into Redux. We pretty much clean house.
+ * The only thing left to do is to wire up Results.js to read state from the other two reducers.
+ 
+###### Connecting The Actions to Respond To User Input
+
+ * We enter SearchBox.js and begin slashing away.
+   * We're no longer using context, so all references of `context` are replaced with `this.props`.
+   * We import all our action creators with three import statements at the top of the file.
+   * Then we scroll down to the bottom of the file and set up our `mapStateToProps` function in order to give this component access to all our reducers.
+ * Holt then walks us through making our first `mapDispatchToProps` function. 
+   * This is where we use the event handlers in the above UI to dispatch the appropriate our action creators with the correct user input.
+ * Lastly, we `connect` both `mapStateToProps` and `mapDispatchToProps` with `Search` in our `export default` statement, and that's it.
+ 
+###### Wrap Up
+
+ * Holt walks us through the entire process of data flow, step-by-step, and does a great job explaining it. 
+ * I've suffered through having to understand Redux by implementing it in a few past apps, so this all makes crystal clear sense to me. I'm sure if a complete newbie were to attempt to follow along, they may get confused because it's a lot of abstract "flow of logic" to mentally manage.
+ * I encourage anyone who may actually be reading this and has gotten this far to check out [Andrew Mead's](https://www.udemy.com/react-2nd-edition/?couponCode=LEARNING) and [Stephen Grider's](https://www.udemy.com/react-redux-tutorial/) tutorials for better beginner friendly explanations of redux. Those two tutorials help me understand *everything* about redux.
+ * Holt then briefly shows us how to use the Redux DevTools and answers some Q&A from the audience. 
+ * Whew, what a section. **I couldn't wait to finish this thing.** I'm looking forward to the Server Side Rendering section. I haven't messed with that before so it'll be nice to *finally* get into some new material.
+ 
+ 
+
+## Server-Side Rendering
+ 
       Currently in progress..
   
 ## Final thoughts: 
 
       To Be Determined.
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
