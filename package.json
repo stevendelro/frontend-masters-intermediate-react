@@ -11,14 +11,16 @@
     "format": "prettier --write \"src/**/*.{js,jsx,css,json}\"",
     "format:check": "prettier --list-different \"src/**/*.{js,jsx,css,json}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\"",
-    "dev": "parcel src/index.html"
+    "dev": "parcel src/index.html",
+    "build": "parcel build --public-url ./dist/ src/index.html",
+    "start": "npm run build && babel-node server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stevendelro/frontend-masters-react-v4.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Brian Holt <btholt@gmail.com",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/stevendelro/frontend-masters-react-v4/issues"
   },
