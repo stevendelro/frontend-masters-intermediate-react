@@ -1,11 +1,11 @@
-import React from 'preact-compat';
-import ReactDOM from 'preact-compat';
-import { Router, Link } from 'preact-router';
-import pf from 'petfinder-client';
-import Results from './Results';
-import Details from './Details';
-import SearchParams from './SearchParams';
-import { Provider } from './SearchContext';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Router, Link } from "@reach/router";
+import pf from "petfinder-client";
+import Results from "./Results";
+import Details from "./Details";
+import SearchParams from "./SearchParams";
+import { Provider } from "./SearchContext";
 
 const petfinder = pf({
   key: process.env.API_KEY,
@@ -17,9 +17,9 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      location: 'Seattle, WA',
-      animal: '',
-      breed: '',
+      location: "Seattle, WA",
+      animal: "",
+      breed: "",
       breeds: [],
       handleAnimalChange: this.handleAnimalChange,
       handleBreedChange: this.handleBreedChange,
@@ -73,8 +73,8 @@ class App extends React.Component {
     return (
       <div>
         <header>
-          <Link href="/">Adopt Me!</Link>
-          <Link href="/search-params">
+          <Link to="/">Adopt Me!</Link>
+          <Link to="/search-params">
             <span aria-label="search" role="img">
               🔍
             </span>
@@ -92,4 +92,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById("root"));

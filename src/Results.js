@@ -1,8 +1,8 @@
-import React from 'preact-compat';
-import pf from 'petfinder-client';
-import Pet from './Pet';
-import SearchBox from './SearchBox';
-import { Consumer } from './SearchContext';
+import React from "react";
+import pf from "petfinder-client";
+import Pet from "./Pet";
+import SearchBox from "./SearchBox";
+import { Consumer } from "./SearchContext";
 
 const petfinder = pf({
   key: process.env.API_KEY,
@@ -26,7 +26,7 @@ class Results extends React.Component {
         location: this.props.searchParams.location,
         animal: this.props.searchParams.animal,
         breed: this.props.searchParams.breed,
-        output: 'full'
+        output: "full"
       })
       .then(data => {
         let pets;
@@ -51,7 +51,7 @@ class Results extends React.Component {
         {this.state.pets.map(pet => {
           let breed;
           if (Array.isArray(pet.breeds.breed)) {
-            breed = pet.breeds.breed.join(', ');
+            breed = pet.breeds.breed.join(", ");
           } else {
             breed = pet.breeds.breed;
           }
