@@ -1,8 +1,8 @@
-import React from "react";
-import pf from "petfinder-client";
-import { navigate } from "@reach/router";
-import Carousel from "./Carousel";
-import Modal from "./Modal";
+import React from 'preact-compat';
+import pf from 'petfinder-client';
+import { navigate } from '@reach/router';
+import Carousel from './Carousel';
+import Modal from './Modal';
 
 const petfinder = pf({
   key: process.env.API_KEY,
@@ -14,13 +14,13 @@ class Details extends React.Component {
   componentDidMount() {
     petfinder.pet
       .get({
-        output: "full",
+        output: 'full',
         id: this.props.id
       })
       .then(data => {
         let breed;
         if (Array.isArray(data.petfinder.pet.breeds.breed)) {
-          breed = data.petfinder.pet.breeds.breed.join(", ");
+          breed = data.petfinder.pet.breeds.breed.join(', ');
         } else {
           breed = data.petfinder.pet.breeds.breed;
         }
@@ -37,7 +37,7 @@ class Details extends React.Component {
         });
       })
       .catch(() => {
-        navigate("/");
+        navigate('/');
       });
   }
   toggleModal = () => this.setState({ showModal: !this.state.showModal });

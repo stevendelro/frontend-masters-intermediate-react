@@ -1,15 +1,15 @@
-import React from "react";
-import { Link } from "@reach/router";
+import React from 'preact-compat';
+import { Link } from '@reach/router';
 
 class Pet extends React.Component {
   render() {
     const { name, animal, breed, media, location, id } = this.props;
     let photos = [];
     if (media && media.photos && media.photos.photo) {
-      photos = media.photos.photo.filter(photo => photo["@size"] === "pn");
+      photos = media.photos.photo.filter(photo => photo['@size'] === 'pn');
     }
 
-    let hero = "http://placecorgi.com/300/300";
+    let hero = 'http://placecorgi.com/300/300';
     if (photos[0] && photos[0].value) {
       hero = photos[0].value;
     }

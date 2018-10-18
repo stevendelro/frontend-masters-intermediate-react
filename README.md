@@ -393,6 +393,16 @@ The instance of `loadable`:
 
 ## Preact
 
+- Created by [Jason Miller](https://github.com/developit), Preact is a refactor of React that is considerably smaller: roughly ~5kB instead of the ~45kB that vanilla React comes as.
+- After sharing a little background on Jason, Holt reminds us that Preact is constantly playing catch up as newer versions of React are deployed. This means that other libraries, like reach-router, wouldn't be compatible with Preact. So, in order to implement this we're going to do a bit of refactoring.
+- **Before continuing on, we need to flash our code to remove all changes made from the server side rendering and code-splitting sections.**
+- Got it? Good. First things first, we will `npm uninstall react react-dom @reach/router`.
+- Next, we `npm install preact preact-compat preact-context preact-router`.
+- Then, we search for and replace all instances of `'react'` and `'react-dom'` with `'preact-compat'` within all of our `*.js` files.
+- Then, we search for and replace all instances of `'@reach/router'` with `'preact-router'`
+
+## Code Organization
+
       Currently in progress..
 
 
