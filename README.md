@@ -49,6 +49,7 @@ Let's get started.
    - Create An Express Server
    - renderToNodeStream
 6. Preact
+   - Substitutions
 7. Code Organization
 8. TypeScript with React
 
@@ -396,15 +397,26 @@ The instance of `loadable`:
 - Created by [Jason Miller](https://github.com/developit), Preact is a refactor of React that is considerably smaller: roughly ~5kB instead of the ~45kB that vanilla React comes as.
 - After sharing a little background on Jason, Holt reminds us that Preact is constantly playing catch up as newer versions of React are deployed. This means that other libraries, like reach-router, wouldn't be compatible with Preact. So, in order to implement this we're going to do a bit of refactoring.
 - **Before continuing on, we need to flash our code to remove all changes made from the server side rendering and code-splitting sections.**
-- Got it? Good. First things first, we will `npm uninstall react react-dom @reach/router`.
+- Got it? Good. The rest of this section is basically going to be a bunch of substitutions, so lets get started.
+
+###### Substitutions
+
+- First things first, we will `npm uninstall react react-dom @reach/router`.
 - Next, we `npm install preact preact-compat preact-context preact-router`.
 - Then, we search for and replace all instances of `'react'` and `'react-dom'` with `'preact-compat'` within all of our `*.js` files.
 - Then, we search for and replace all instances of `'@reach/router'` with `'preact-router'`
+- We still have a few more things to touch up, so we'll head over to App.js and Pet.js and find all Link tags in our JSX and replace the attribute `to` with `href`.
+- Afterwards, head over to SearchContext.js and replace the import statement up top with `import { createContext } from 'preact-context';` Then, replace the `React.createContext` with just `createContext`.
+- Lastly, we need to replace all instances of `navigate` with `route` from preact-router. This has us going into SearchParams.js and Deatails.js to make the substitutions. 
+- Before we run our dev build, we run `rm -rf .cache/ dist/` to clear parcel's cache. Once you do that, run `npm run dev` and.. well nothing. 
+- I've tried for the past half hour to clear this error `h is not defined` and I can't quite figure it out. This is pretty frustrating. I found a few links that sheds a bit more light on the matter: [here](https://github.com/developit/preact-compat/issues/161) and [here](https://stackoverflow.com/questions/42276609/migrating-to-preactjs), but I'm unable to get it to work.
+- I'm not going to waste anymore time trying to figure this out. I understand the overall concept of migrating to Preact and if I run into this same error in a future project I'll give it its due diligence then.
+- It looks like Holt addresses this `h` call in the second Preact video, but the error still persists on my end.
+
 
 ## Code Organization
 
       Currently in progress..
-
 
 ## Final thoughts:
 

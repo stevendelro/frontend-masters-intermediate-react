@@ -1,4 +1,5 @@
 import React from 'preact-compat';
+import { h } from 'preact';
 import { route } from 'preact-router';
 import SearchBox from './SearchBox';
 
