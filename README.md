@@ -44,6 +44,10 @@ Let's get started.
    - Connecting The Actions to Respond To User Input
    - Wrap Up
 5. Server Side Rendering
+   - ClientApp.js
+   - Setup Production Build Scripts
+   - Create An Express Server
+   - renderToNodeStream
 6. Preact
 7. Code Organization
 8. TypeScript with React
@@ -225,7 +229,7 @@ The instance of `loadable`:
 - We make a new directory in our src folder called `actionCreators`. I find this interesting because I've named this folder simply `actions` in past projects.
 - We're basically creating separate files in this folder with each file exporting a single function that returns an object with an appropriate named `type` property, then passing our user input as the value for the `payload` property. I thought this was going to be something new, but it's just business as usual.
 - Holt uses the `function` keyword for this, like so:
-    
+
       export default function changeAnimal(animal) {
         return {
           type: "SET_ANIMAL",
@@ -239,7 +243,7 @@ The instance of `loadable`:
         type: 'SET_ANIMAL',
         payload: animal
       });
-    
+
       export default changeAnimal;
 
 - We then quickly dive into how testable these action creators are, especially when utilizing the `.toEqualSnapShot()` function. This gives your future self, or any other future developers, notice that changing the "type" will cause problems.
@@ -289,7 +293,108 @@ The instance of `loadable`:
 
 ## Server-Side Rendering
 
+- We begin this section with a small discussion on page performance.
+- Holt basically shows us that under 2G network conditions, unoptimized websites show the user raw HTML and CSS while it struggles to load up our Javascript—which is basically our entire site if we're using React.
+- In **Server Side Rendering**, we're going to use React in a Node environment to render our entire site as static HTML and CSS on the first request.
+- This immediately presents the user with _what looks like_ a complete website, then we'll have React take over that static markup and make everything dynamic.
+- The first step of this process is to create a new file called `ClientApp.js` in our `src` directory. This is where we will put all the Javascript that we aren't going to run in the server.
+
+###### ClientApp.js
+
+- Inside ClientApp, instead of importing `render` from React-DOM, Holt has us use React 16's `hydrate` function.
+- The difference between `hydrate` and our good old friend `render` are as follows:
+
+| hydrate                                                         | render                                                |
+| --------------------------------------------------------------- | ----------------------------------------------------- |
+| Looks for existing markup to take over an existing application. | This is brand new, replace everything inside of here. |
+
+- Then, we jump into our index.html file, locate our script tag and replace `App.js` with `ClientApp.js` as the source. After that, we open up App.js and replace the `ReactDOM.render` call at the end of the file with an `export default App;` statement.
+- The next step is to set up our production build process.
+
+###### Setup Production Build Scripts
+
+- We install `babel-cli` and `express`, then we head over to our package.json file and set up the following npm script: `"build": "parcel build --public-url ./dist/ src/index.html"`
+  - **parcel build**: This step will minify our code, optimize our assets and vastly improve our app's load time.
+  - **--public-url ./dist/**: This identifies where our static assets are being served from so that all of our relative paths are valid.
+  - **src/index.html**: This defines our entry point, which is the same as our "dev" script.
+- In order to spin up our node server, we'll make another npm script like so: `"start": "npm run build && babel-node server.js"`. As you could see, we must run our build first, then we direct babel-node to start the server up.
+
+###### Create An Express Server
+
+- Holt has us create a `server.js` file in our source directory and we begin laying down import statements at the top.
+- This was somewhat unfamiliar, since I'm used to housing my server in it's own directory—separate from my frontend code. That's unnecessary for this app, so we'll place our server in our root directory.
+- Also, we're using import statements instead of the commonly used require statements, aka: CommonJS modules. Holt addresses that we are able to do this due to the magic of babel. Nice.
+- I'll explain the unfamiliar lines below, but this is our completed server.js file in it's entirety:
+
+        import express from 'express';
+        import React from 'react';
+        import { renderToString } from 'react-dom/server';
+        import { ServerLocation } from '@reach/router';
+        import fs from 'fs';
+        import App from './App';
+
+        const PORT = process.env.PORT || 3000;
+
+        const html = fs.readFileSync('dist/index.html').toString();
+        const parts = html.split('not rendered');
+
+        const app = express();
+
+        app.use('/dist', express.static('dist'));
+        app.use((req, res) => {
+        const reactMarkup = (
+            <ServerLocation url={req.url}>
+            <App />
+            </ServerLocation>
+        );
+        res.send(`${parts[0]}${renderToString(reactMarkup)}${parts[1]}`);
+        res.end();
+        });
+
+        console.log(`Listening on Port: ${PORT}`)
+        app.listen(PORT);
+
+* `import { renderToString } from 'react-dom/server';`
+  - **renderToString** will generate the HTML from our code as a string, which we will then inject into our index.html.
+* `import { ServerLocation } from "@reach/router";`
+  - When server rendering, you need to wrap your app in a **ServerLocation**.
+  - This enables your Routers, Links, etc. to match a location on the server where there is no history to listen to.
+* `const html = fs.readFileSync('dist/index.html').toString();`
+  - This will read the generated markup, with all our correct file paths and styling.
+* In order to create our React Markup, we'll wrap our App in `ServerLocation` tags, like so:
+
+        app.use((req,res) => {
+          const reactMarkup = (
+            <ServerLocation url={req.url}>
+              <App />
+            </ServerLocation>
+          );
+
+          // NOTE: These next two lines are explained below.
+          res.send(`${parts[0]}${renderToString(reactMarkup)}${parts[1]}`);
+          res.end();
+        });
+
+* Now, we have a constant called `reactMarkup` that we need to inject into our index.html in between our `root` div tags.
+* Holt shows us how to do this by placing `const parts = html.split('not rendered');` right under our `const html` statement. We split on the string `"not rendered"` because that was our initial placeholder within our root div.
+* Then, we write that `res.send` statement under my `// NOTE: These next two lines are explained below` comment to finally inject the static html into our index.html.
+* At this point, Holt runs his `start` script and after fixing a quick typo, everything seems to be working fine for him. Unfortunately, not for me.
+* I followed the course linearly, which had me work through the Code Splitting section first. When I ran `npm run start`, my build would succeed, but the app would crash on all my code-splitting `Loadable` code.
+* I'm assuming that section was moved to be earlier in the course during editing, so I had to go back and remove all Loadable-related code in both App.js and Details.js.
+* After the refactor, everything worked smoothly. I disabled javascript in my devTools, refreshed the page and saw that all my code was correctly loaded as static markup, creating the illusion of a near instant initial page load. Nice.
+
+###### renderToNodeStream
+
+- Our little server side rendering illusion works well for our current app, but in larger apps, the time it takes for our javascript to load might be too long, causing our user to interface with the non-responsive static markup.
+- In order to remedy this, Holt introduces us to React 16's `renderToNodeStream` which will stream the markup to the client as soon as it's rendered.
+- I wont elaborate on the details here, but we essentially we pass in our `reactMarkup` to `renderToNodeStream`.
+- As React is rendering, we pipe the `part[0]` stream into `res`. When that stream ends, we tell it not to close out, but to pipe in the second half of our app: `part[1]`.
+- It's not that noticeable with this particular app because it's so small, but doing this will send all the styling and html _as soon as React renders it_, to the user—making it just a little faster.
+
+## Preact
+
       Currently in progress..
+
 
 ## Final thoughts:
 
