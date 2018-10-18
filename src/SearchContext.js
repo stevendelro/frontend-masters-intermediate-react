@@ -1,6 +1,6 @@
-import React from 'preact-compat';
+import { createContext } from 'preact-context';
 
-const SearchContext = React.createContext({
+const SearchContext = createContext({
   location: 'Seattle, WA',
   animal: '',
   breed: '',

@@ -1,6 +1,6 @@
 import React from 'preact-compat';
 import pf from 'petfinder-client';
-import { navigate } from '@reach/router';
+import { route } from 'preact-router';
 import Carousel from './Carousel';
 import Modal from './Modal';
 
@@ -37,7 +37,7 @@ class Details extends React.Component {
         });
       })
       .catch(() => {
-        navigate('/');
+        route('/');
       });
   }
   toggleModal = () => this.setState({ showModal: !this.state.showModal });
