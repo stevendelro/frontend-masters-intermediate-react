@@ -416,6 +416,13 @@ The instance of `loadable`:
 
 ## Code Organization
 
+- In this section, Holt gives us his opinion on how to organize your code.
+- He basically has all of his components in self contained directories, where all a component's CSS and JSX are located together.
+- This makes it easier to remove components in the future, and not have any dead, unused styling code floating around elsewhere in your code. I like it.
+
+
+## TypeScript
+
       Currently in progress..
 
 ## Final thoughts:
