@@ -6,7 +6,7 @@
   "scripts": {
     "test": "",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
-    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
+    "lint": "tslint --project .",
     "dev": "parcel src/index.html"
   },
   "repository": {
@@ -20,18 +20,16 @@
   },
   "homepage": "https://github.com/stevendelro/frontend-masters-react-v4#readme",
   "devDependencies": {
+    "@types/reach__router": "^1.2.0",
     "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.6",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "eslint": "^5.3.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.10.0",
     "parcel-bundler": "^1.9.7",
     "prettier": "^1.14.2",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-react": "^3.6.0",
     "typescript": "^3.1.3"
   },
   "dependencies": {
