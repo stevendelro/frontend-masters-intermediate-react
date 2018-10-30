@@ -52,6 +52,9 @@ Let's get started.
    - Substitutions
 7. Code Organization
 8. TypeScript with React
+   - Reworking A Component To Include Types
+   - Switching from ESLint to TSLint
+   - Reworking The Rest of Our App
 
 ## Notes
 
@@ -269,7 +272,7 @@ The instance of `loadable`:
 
 - **Thunk** is a slang derivative of the word "think". In computer science, thunks are functions that are used to delay a calculation until a result is needed.
 - **Dispatch** is a function that is given to us from the Redux library. It's always called with an action object. All it does is send that action object to our reducers.
-- Redux-thunk allows us to process asynchronous data when we receive it. This means that we could write code where we treat an AJAX call just like a Javascript promise.
+- **Redux-thunk** allows us to process asynchronous data when we receive it. This means that we could write code where we treat an AJAX call just like a Javascript promise.
 - When an AJAX call is made by the user and our app receives a response, redux-thunk allows us to use `dispatch()` to send an action object to all our reducers—with that response data (or part of that response data) as the payload, and whatever we want as the type.
 - After Holt's discussion redux-thunk and dispatch, we refactor our App to remove all Context examples and helper functions as _all of this_ has been extracted out into Redux. We pretty much clean house.
 - The only thing left to do is to wire up Results.js to read state from the other two reducers.
@@ -423,9 +426,89 @@ The instance of `loadable`:
 
 ## TypeScript
 
-      Currently in progress..
+- Alrighty, after reseting our `src` folder back to baseline, let's dive into the last section of this course.
+- Holt prefaces this lesson with a warning that TypeScript may be a pain to set up, right up until you get roughly 60% of your code "typed". VSCode has really incredible TypeScript integration, so Holt assures us that the juice is well worth the squeeze.
+- We begin breaking the ice with our Modal component.
+- Holt suggests that if you plan on integrating TypeScript within your project it's best not to rework your entire app, but to start with a very small, simple component. 
+- It's not necessary to get 100% of your component typed out in a single day, as everything will work fine if we integrate it in sections.
+- First things first, we need to `npm install -D typescript` and initialize it with `npx tsc --init` which will add a TS configuration file to our root directory.
+
+###### Reworking A Component To Include Types
+
+- In order for TypeScript to properly work with our JSX, we need to be sure to locate `Modal.js` and rename it to: `Modal.tsx`.
+- Upon doing this, you'll notice ESLint throw a few errors up. In order to remedy this, we'll first remove our constructor block and replace it with `private el = document.createElement('div');`
+- The `private` keyword means that only Modal can use it. If another component tried to access `el`, it wouldn't be able to.
+- Then, we'll place the keyword `public` in front of our lifecycle and render methods. This allows React to use these methods outside of the Modal component. We also need to place our `appendChild` and `removeChild` calls within an `if` block to ensure that they are only called when `modalRoot` is available.
+- At this point, Modal.tsx is now TypeScript friendly.
+
+###### Switching from ESLint to TSLint
+
+- In order for proper linting when using TypeScript, we must swap out all of our ESLint gear with TSLint.
+- Head over to your console and `npm uninstall eslint babel-eslint eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react`.
+- Once that completes, we'll go ahead and `npm install -D tslint tslint-react tslint-config-prettier`.
+- Since we've initialized our TypeScript we've got a tsconfig.json in our main directory now, we'll no longer need our ESLint configuration file, so `rm .eslintrc.json`.
+- Now, we'll head over to our package.json file to replace our "lint" script with `tslint --project .` (NOTE: don't forget the space followed by a period following the `--project` flag).
+- Then we will create a new file in our root directory called: `tslint.json` and within that file we're going to create an object with a key of `"extends"` and it's value will be an array of the following strings: "tslint:recommended", "tslint-react" and "tslint-config-prettier".
+- At this point we're pretty much good to go, but Holt expresses his angst with some of the linting rules and has us exclude the following:    "ordered-imports", "object-literal-sort-keys", "interface-name", "member-ordering", and "no-console".
+
+###### Reworking The Rest of Our App
+
+- One by one, Holt begins reworking through the rest of our App by converting all of our components into `.tsx` files. 
+- I'm going to pass on documenting the majority of this process for the sake of brevity. 
+- Nice, Holt has us write something called "generics" and this is my first exposure to it.
 
 ## Final thoughts:
 
-      To Be Determined.
+I've decided that the benefit of completing this tutorial doesn't outweigh the dread of having to finish up the last bit. If I happen to decide to jump back into this and polish off the TypeScript section, I'll revise this and what not, but I've gotten what I needed and it's time to work on personal projects.
+
+###### Lasting Takeaways
+
+**1. The Javascript landscape is constantly changing.** 
+  - Keeping up with all the cool new projects out there is paramount to keeping myself engaged with the craft.
+
+**2. It's okay to quit these courses before I finish.** 
+  - So long as I'm doing so in order to move forward and move on to better things.
+
+**3. I should have adjusted my approach towards completing this course once I found out that it wasn't meant to be completed linearly.** 
+  - Instead, I told myself to finish what I've started before I begin working on something else. Little did I know, I would grow so bored that I would procrastinate the hell out of it, preventing me from working on anything else. 
+  - I've learned so much about what drives me, what drains me, and what kind of obstacles could knock me out of my productive mode by seeing how bad I procrastinated in completing this course. Duly noted. I'll make my adjustments and make sure I mitigate such behavior in the future.
+
+**4. This intermediate tutorial was more of a sampling and exhibition of cool new Javascript tools** 
+  - This was awesome in it's own way, but not exactly the kind of thing that I envisioned it to be before I started. 
+  - Next time, I'll need to really evaluate the course to really fit my needs before I invest so much time to completing it.
+
+**5. Writing these notes *while* coding along with the course depleted my will power at a rate so much faster than simply completing the course without notes.**
+  - I didn't plan for that and the accumulated stress from each day would roll over to the next without me knowing it. 
+  - I need to be more cognizant of my mental exertion in order to give myself appropriate amount of rest. 
+  - It's like I was writing a book while coding a project. Sure, it's great practice and writing clearly really helps to nail concepts into my mind, but I didn't expect it to be so mentally exhausting.
+
+###### Thanks
+
+Thanks to Brian Holt for creating this project and openly sharing his insight and opinions in order to help influence the next generation of React developers. I put myself through hell with these write ups, but nevertheless, it was well worth it. 
+  
+I'm leaving this course with the feeling like I really absorbed all that was taught—which is way better than watching the entire course as if it were some kind of informative movie.
+  
+Anyway on to the next project!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
