@@ -55,6 +55,10 @@ Let's get started.
    - Reworking A Component To Include Types
    - Switching from ESLint to TSLint
    - Reworking The Rest of Our App
+   - (I wont be completing this section)
+9. Final thoughts
+   - Lasting Takeaways
+   - Thanks
 
 ## Notes
 
@@ -488,7 +492,9 @@ Thanks to Brian Holt for creating this project and openly sharing his insight an
   
 I'm leaving this course with the feeling like I really absorbed all that was taught—which is way better than watching the entire course as if it were some kind of informative movie.
   
-Anyway on to the next project!
+Anyway, on to the next project!
+
+Thanks!
 
 
 
